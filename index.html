@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#8cc8ef" />
+    <title>Mudik Stack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@600;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="scene"></canvas>
+
+      <div id="hud" hidden>
+        <div class="card score">
+          <span class="label">Skor</span>
+          <span id="score" class="big">0</span>
+          <span class="label">Jatuh</span>
+          <span id="drops" class="drops"></span>
+        </div>
+        <div class="card route">
+          <div class="route-head"><span id="route-next">Cikampek</span><span id="route-km">70 km</span></div>
+          <div class="bar"><div id="route-bar"></div></div>
+          <div class="label" id="route-total">Jakarta → Tegal</div>
+        </div>
+        <div id="banner" class="banner"></div>
+        <div id="toasts" class="toasts"></div>
+        <div class="card next" id="next">
+          <div class="next-row"><span id="next-name">Kardus Mi</span><span id="next-mass" class="label">6 kg</span></div>
+          <div class="bar timer"><div id="next-timer"></div></div>
+          <div class="label hint">Tap / klik / Spasi buat jatuhin</div>
+        </div>
+      </div>
+
+      <button id="mute" class="mute" aria-label="Suara nyala/mati">🔊</button>
+
+      <div id="menu" class="overlay">
+        <div class="panel">
+          <h1>Mudik Stack</h1>
+          <p class="tagline">Tumpuk barang mudik di atap mobil. Awas polisi tidur, tikungan, sama rem mendadak.</p>
+          <ul class="how">
+            <li><b>Tap / klik / Spasi</b> buat jatuhin barang yang lagi melayang.</li>
+            <li>Barang yang diam di atap = <b>+1 skor</b>.</li>
+            <li>3 barang jatuh ke jalan = <b>game over</b>.</li>
+          </ul>
+          <button id="start" class="btn">Berangkat!</button>
+          <p class="label" id="best"></p>
+          <p class="credits">Model mobil: "Toyota Avanza 2005" oleh JhonyMan, CC BY 4.0 · Truk & van: Kenney Car Kit, CC0</p>
+        </div>
+      </div>
+
+      <div id="over" class="overlay" hidden>
+        <div class="panel">
+          <h2 id="over-title">Kebanyakan yang jatuh!</h2>
+          <p class="tagline" id="over-sub">Emak udah nelpon terus…</p>
+          <div class="stats">
+            <div><span class="label">Skor</span><b id="over-score">0</b></div>
+            <div><span class="label">Jarak</span><b id="over-km">0 km</b></div>
+            <div><span class="label">Rekor</span><b id="over-best">0</b></div>
+          </div>
+          <button id="restart" class="btn">Coba lagi</button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

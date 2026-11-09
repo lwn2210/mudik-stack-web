@@ -1,0 +1,331 @@
+:root {
+  --ink: #1d2a33;
+  --ink-soft: #5b6b75;
+  --paper: rgba(255, 252, 244, 0.92);
+  --accent: #e8542f;
+  --accent-dark: #b63a1b;
+  --good: #2f9e5b;
+  --warn: #f2b21b;
+  --radius: 14px;
+  --display: 'Lilita One', system-ui, sans-serif;
+  --body: 'Nunito', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #8cc8ef;
+  color: var(--ink);
+  font-family: var(--body);
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  touch-action: none;
+}
+
+#app {
+  position: fixed;
+  inset: 0;
+}
+
+#scene {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.card {
+  position: absolute;
+  background: var(--paper);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgba(20, 40, 60, 0.18);
+  padding: 10px 14px;
+  pointer-events: none;
+}
+
+.score {
+  top: 16px;
+  left: 16px;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  column-gap: 12px;
+  row-gap: 2px;
+}
+
+.big {
+  font-family: var(--display);
+  font-size: 34px;
+  line-height: 1;
+}
+
+.drops {
+  display: flex;
+  gap: 5px;
+}
+
+.drops i {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: #d9dde0;
+}
+
+.drops i.on {
+  background: var(--accent);
+}
+
+.route {
+  top: 16px;
+  right: 16px;
+  width: min(240px, 44vw);
+}
+
+.route-head {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--display);
+  font-size: 18px;
+}
+
+.bar {
+  height: 8px;
+  border-radius: 99px;
+  background: #e2e5e7;
+  overflow: hidden;
+  margin: 6px 0 4px;
+}
+
+.bar > div {
+  height: 100%;
+  width: 0;
+  border-radius: 99px;
+  background: var(--good);
+}
+
+.next {
+  bottom: max(20px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(320px, calc(100vw - 32px));
+  text-align: center;
+}
+
+.next-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--display);
+  font-size: 22px;
+}
+
+.timer > div {
+  background: var(--warn);
+}
+
+.hint {
+  margin-top: 2px;
+}
+
+.banner {
+  position: absolute;
+  top: 92px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  padding: 10px 20px;
+  border-radius: 99px;
+  background: var(--warn);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 24px;
+  white-space: nowrap;
+  opacity: 0;
+  transition:
+    opacity 0.15s,
+    transform 0.15s;
+  pointer-events: none;
+}
+
+.banner.show {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.toasts {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.toast {
+  position: absolute;
+  left: 50%;
+  white-space: nowrap;
+  font-family: var(--display);
+  font-size: 26px;
+  color: #fff;
+  -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.35);
+  animation: rise 1.2s ease-out forwards;
+}
+
+.toast.bad {
+  color: #ffd2c4;
+}
+
+@keyframes rise {
+  from {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -70px);
+    opacity: 0;
+  }
+}
+
+/* Over the menu and result panels the HUD is gone, so the sound button moves up out of their way. */
+#app:has(> .overlay:not([hidden])) .mute {
+  top: 16px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: linear-gradient(180deg, rgba(140, 200, 239, 0.2), rgba(29, 42, 51, 0.45));
+}
+
+.panel {
+  width: min(420px, 100%);
+  background: var(--paper);
+  border-radius: 22px;
+  padding: 26px 24px 20px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(20, 40, 60, 0.3);
+}
+
+h1,
+h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  margin: 0 0 6px;
+  line-height: 1;
+}
+
+h1 {
+  font-size: 52px;
+  color: var(--accent);
+}
+
+h2 {
+  font-size: 34px;
+}
+
+.tagline {
+  margin: 0 0 16px;
+  color: var(--ink-soft);
+  font-size: 16px;
+}
+
+.how {
+  text-align: left;
+  margin: 0 0 20px;
+  padding-left: 20px;
+  line-height: 1.5;
+}
+
+.btn {
+  font-family: var(--display);
+  font-size: 24px;
+  color: #fff;
+  background: var(--accent);
+  border: 0;
+  border-radius: 99px;
+  padding: 12px 36px;
+  box-shadow: 0 5px 0 var(--accent-dark);
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 var(--accent-dark);
+}
+
+.mute {
+  position: absolute;
+  right: 16px;
+  top: 100px;
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 6px 18px rgba(20, 40, 60, 0.18);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.credits {
+  margin: 10px 0 0;
+  font-size: 11px;
+  color: var(--ink-soft);
+  opacity: 0.8;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin: 4px 0 20px;
+}
+
+.stats div {
+  display: grid;
+}
+
+.stats b {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 28px;
+}
+
+@media (max-width: 520px) {
+  .route {
+    width: 44vw;
+  }
+  .route-head {
+    font-size: 15px;
+  }
+  .banner {
+    font-size: 19px;
+    top: 104px;
+  }
+  h1 {
+    font-size: 44px;
+  }
+}
