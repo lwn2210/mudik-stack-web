@@ -34,9 +34,17 @@
         </div>
       </div>
 
-      <button id="mute" class="mute" aria-label="Suara nyala/mati">🔊</button>
+      <button id="mute" class="mute" aria-label="Suara nyala/mati" hidden>🔊</button>
 
-      <div id="menu" class="overlay">
+      <div id="boot" class="overlay">
+        <div class="panel">
+          <h1>Mudik Stack</h1>
+          <p id="boot-status" class="tagline" role="status" aria-live="polite">Memuat model dan mesin game…</p>
+          <button id="boot-retry" class="btn" hidden>Muat ulang</button>
+        </div>
+      </div>
+
+      <div id="menu" class="overlay" hidden>
         <div class="panel">
           <h1>Mudik Stack</h1>
           <p class="tagline">Tumpuk barang mudik di atap mobil. Awas polisi tidur, tikungan, sama rem mendadak.</p>
@@ -45,7 +53,7 @@
             <li>Barang yang diam di atap = <b>+1 skor</b>.</li>
             <li>3 barang jatuh ke jalan = <b>game over</b>.</li>
           </ul>
-          <button id="start" class="btn">Berangkat!</button>
+          <button id="start" class="btn" disabled>Berangkat!</button>
           <p class="label" id="best"></p>
           <p class="credits">Model mobil: "Toyota Avanza 2005" oleh JhonyMan, CC BY 4.0 · Truk & van: Kenney Car Kit, CC0</p>
         </div>
